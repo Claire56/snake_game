@@ -1,0 +1,9 @@
+
+*PYC
+
+__pycache__/
+/python
+.vscode/
+.idea/
+lib/
+bin/
