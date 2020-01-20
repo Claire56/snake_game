@@ -80,8 +80,19 @@ wn.onkeypress(go_left,'a')
 
 while True:
     wn.update()
+    #check for collision and end game if collison occurs
+    if snake.xcor()<-290 or snake.xcor()>290 or snake.ycor()> 290 or snake.ycor()<-290:
+        time.sleep(1)
+        snake.goto(0,0)
+        snake.direction = "stop"
+        # hide tails
+        for tail in tails:
+            tail.goto(1000,10000)
+        # delete tails
+        tails.clear()
+        
     if snake.distance(food)<=20:
-        food.goto(random.randint(-290,290), random.randint(-290,290))
+        food.goto(random.randint(-250,250), random.randint(-250,250))
 
         # Add a segment to the snake
         new_segment = turtle.Turtle()
@@ -96,6 +107,9 @@ while True:
 
         # Increase the score
         score += 10
+        pen.write("Score: 0  High Score: 0", align="center", font=("Courier", 24, "normal"))
+
+
 
     # Move the end tails first in reverse order
     for index in range(len(tails)-1, 0, -1):
